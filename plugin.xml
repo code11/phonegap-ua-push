@@ -16,12 +16,14 @@
 
     <dependency id="org.apache.cordova.core.device" url="https://git-wip-us.apache.org/repos/asf/cordova-plugin-device.git" commit="master" subdir="." />
 
-    <asset src="www/PushNotification.js" target="js/PushNotification.js" />
+	<js-module src="www/PushNotification.js" name="PushNotification">
+		<clobbers target="window.plugins.pushNotification" />
+	</js-module>	
 
     <!-- android -->
     <platform name="android">
        
-        <config-file target="res/xml/config.xml" parent="/widget">
+        <config-file target="res/xml/config.xml" parent="/*">
             <feature name="PushNotificationPlugin">
                 <param name="android-package" value="com.urbanairship.phonegap.PushNotificationPlugin"/>
                 <param name="onload" value="true" />
@@ -74,7 +76,7 @@
     
     <!-- ios -->
     <platform name="ios">
-        <config-file target="config.xml" parent="/widget">
+        <config-file target="config.xml" parent="/*">
              <feature name="PushNotificationPlugin">
                 <param name="ios-package" value="PushNotificationPlugin" />
                 <param name="onload" value="true" />

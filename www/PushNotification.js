@@ -255,10 +255,12 @@ PushNotification.prototype.registrationCallback = function (data) {
   this.event_emitter.emit('registration', error, pushID);
 }
 
+module.exports = new PushNotification();
+
 // Register the plugin
 if(!window.plugins) {
 	window.plugins = {};
 }
 if (!window.plugins.pushNotification) {
-	window.plugins.pushNotification = new PushNotification();
+	window.plugins.pushNotification = module.exports;
 }
